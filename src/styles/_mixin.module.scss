@@ -1,0 +1,7 @@
+@mixin displayFlex($horizontal-position: initial, $vertical-position: initial, $flex-direction: initial) {
+  display: flex;
+  flex-direction: $flex-direction;
+  justify-content: $horizontal-position;
+  align-items: $vertical-position;
+}
+
