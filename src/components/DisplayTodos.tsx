@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, ReactNode} from 'react';
 import {useSelector} from 'react-redux';
 import {motion} from 'framer-motion';
 import TodoItem from './TodoItem';
@@ -15,11 +15,12 @@ interface DisplayProps {
 }
 
 interface sortProps {
+  sort: sortVariant;
   todos: ITodo[];
-  item: string;
+  children?: ReactNode;
 }
 
-const sortSwitch: React.FC<sortProps> = ({todos, item}) => {
+const sortSwitch: React.FC = ({}) => {
   switch (sort) {
     case 'active':
       return todos.map((item) => !item.completed && <TodoItem key={item.id} item={item} />);
@@ -28,11 +29,10 @@ const sortSwitch: React.FC<sortProps> = ({todos, item}) => {
     case 'all':
       return todos.map((item) => <TodoItem key={item.id} item={item} />);
   };
-    default:
-      return <div>null</div>;
+    default: return <div>null</div>;
   };
 
-const DisplayTodos: React.FC<DisplayProps> = () => {
+const DisplayTodos: React.FC<DisplayProps> = ({state}) => {
   const [sort, setSort] = useState<string>('active');
   const todos = useSelector((state) => state);
 

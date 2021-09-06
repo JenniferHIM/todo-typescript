@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {ITodo, IItem} from './interfaces';
+import {ITodo} from './interfaces';
 
 const initialState: Array<ITodo> = [];
 
@@ -14,7 +14,7 @@ const addTodoReducer = createSlice({
 
     removeTodos: (state, action: PayloadAction<number>) => state.filter((item) => item.id !== action.payload),
 
-    updateTodos: (state, action: PayloadAction<IItem>) =>
+    updateTodos: (state, action: PayloadAction<ITodo>) =>
       state.map((todo) => {
         if (todo.id === action.payload.id) {
           return {
