@@ -1,0 +1,177 @@
+@import "../styles/mixin.module.scss";
+@import "../styles/variables.module.scss";
+
+html {
+  line-height: 1.15;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  font-family: "RocknRoll One", sans-serif;
+}
+
+body {
+  background: linear-gradient(
+    150deg,
+    rgb(104, 123, 205) 0%,
+    rgb(106, 90, 191) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  color: $black-color;
+  overflow: hidden;
+  @include displayFlex(center, center, row);
+}
+
+ul {
+  list-style: none;
+}
+
+.App {
+  margin-top: 48px;
+}
+
+.App h1 {
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 20px;
+  color: $white-color;
+  text-shadow: 0 0 5px #433aa8, 3px -1px 5px $btn-bcg;
+}
+
+.addTodos {
+  @include displayFlex(center, 0, 0);
+}
+
+.todoInput {
+  min-width: 240px;
+  width: 40vw;
+  max-height: 40px;
+  background-color: $white-color;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 40px;
+  padding: 10px 20px;
+  align-self: center;
+
+  &:focus {
+  outline: none;
+  border: 2px solid rgb(67, 58, 168);
+}
+}
+
+.addBtn {
+  margin: -10px 0 0 15px;
+  background-color: $btn-bcg;
+  color: $white-color;
+  border-radius: 50%;
+  border: 2px solid $white-color;
+  font-size: 24px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  box-shadow: 2px 4px 10px $btn-bcg;
+
+ @include displayFlex(0, center, center);
+}
+
+.addBtn:focus {
+  outline: none;
+}
+
+.displayTodos {
+  margin-top: 48px;
+  @include displayFlex(center, center, column);
+
+  &.buttons {
+  margin-bottom: 32px;
+
+  &button {
+  margin: 0 15px 32px 10px;
+  padding: 8px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  border: none;
+}
+  &button:focus {
+  outline: none;
+}
+
+  &button:not(:last-child) {
+  margin-right: 30px;
+}
+}
+
+  &ul {
+  list-style: none;
+  display: flex;
+  align-self: flex-start;
+  flex-wrap: wrap;
+  margin-left: 5%;
+}
+}
+
+.card {
+  @include displayFlex(center, 0, center);
+  background: rgb(180, 182, 218);
+  background: radial-gradient(
+    circle,
+    hsla(237, 34%, 78%, 0.9) 0%,
+    hsla(219, 88%, 94%, 0.9) 100%
+  );
+  margin: 0 16px 16px 0;
+  width: 288зч;
+  border-radius: 8px;
+  padding: 16px;
+  position: relative;
+
+  &textarea {
+  margin: 10px;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  background-color: $white-color;
+  color: $btn-bcg;
+  height: 70%;
+}
+
+&textarea:disabled {
+  background-color: transparent;
+}
+
+&.Btns {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+
+  &button {
+  border-radius: 20%;
+  border: none;
+  margin: 10 15px;
+  font-size: 20px;
+  cursor: pointer;
+  color: $btn-bcg;
+  background-color: transparent;
+}
+
+&button:focus {
+  outline: none;
+}
+}
+}
+
+.completed {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-color: $background-color;
+  border: 2px solid $border-color;
+  color: $white-color;
+  font-size: 14px;
+  padding: 10px 30px;
+  border-radius: 20px;
+}
+
+
