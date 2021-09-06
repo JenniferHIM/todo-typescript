@@ -12,18 +12,15 @@ export enum sortVariant {
 }
 interface DisplayProps {
   state: string;
-}
-
-interface sortProps {
-  sort: sortVariant;
   todos: ITodo[];
-  children?: ReactNode;
+  sort: sortVariant;
+  // children?: ReactNode;
 }
 
-const sortSwitch: React.FC = ({}) => {
+const sortSwitch: React.FC = () => {
   switch (sort) {
     case 'active':
-      return todos.map((item) => !item.completed && <TodoItem key={item.id} item={item} />);
+      return todos.map((todo) => !item.completed && <TodoItem key={item.id} item={todo} />);
     case 'completed':
       return todos.map((item) => item.completed === true && <TodoItem key={item.id} item={item} />);
     case 'all':
@@ -32,7 +29,7 @@ const sortSwitch: React.FC = ({}) => {
     default: return <div>null</div>;
   };
 
-const DisplayTodos: React.FC<DisplayProps> = ({state}) => {
+const DisplayTodos: React.FC = ({DisplayProps}) => {
   const [sort, setSort] = useState<string>('active');
   const todos = useSelector((state) => state);
 

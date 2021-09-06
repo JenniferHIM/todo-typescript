@@ -26,7 +26,7 @@ const addTodoReducer = createSlice({
       }),
 
     // completed
-    completeTodos: (state, action: PayloadAction<boolean>) =>
+    completeTodos: (state, action: PayloadAction<number>) =>
       state.map((todo) => {
         if (todo.id === action.payload) {
           return {

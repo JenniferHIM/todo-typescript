@@ -2,13 +2,13 @@ import React, {useRef} from 'react';
 import {AiFillEdit} from 'react-icons/ai';
 import {IoCheckmarkDoneSharp, IoClose} from 'react-icons/io5';
 import {useDispatch} from 'react-redux';
-import {ITodo} from 'redux-toolkit/interfaces';
+import {IItem} from 'redux-toolkit/interfaces';
 import {removeTodos, updateTodos, completeTodos} from '../redux-toolkit/slice';
 import styles from '../styles/main.module.scss';
 
-type TodoItemProps = {
-  item: ITodo;
-};
+interface TodoItemProps {
+  item: IItem[];
+}
 
 const TodoItem: React.FC<TodoItemProps> = ({item}) => {
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const TodoItem: React.FC<TodoItemProps> = ({item}) => {
   const update = (id: number, e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.which === 13 && inputRef.current) {
       // here 13 is key code for enter key
-      dispatch(updateTodos({id, item: }));
+      dispatch(updateTodos({id, item: value}));
       inputRef.current.disabled = true;
     }
   };
