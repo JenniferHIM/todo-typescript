@@ -1,51 +1,44 @@
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import {motion} from 'framer-motion';
+import {RootState} from 'redux-toolkit/store';
 import TodoItem from './TodoItem';
 import styles from '../styles/main.module.scss';
-import { ITodo } from '../redux-toolkit/interfaces';
+import {ITodo} from '../redux-toolkit/interfaces';
 
-export enum sortVariant {
-  active = 'active',
-  completed = 'completed',
-  all = 'all',
-}
-interface DisplayProps {
-  state: string;
+enum sortVariant {
+  active,
+  completed,
+  all,
 }
 
-interface sortProps {
-  todos: ITodo[];
-  item: string;
-}
-
-const sortSwitch: React.FC<sortProps> = ({todos, item}) => {
+const sortSwitch = (sort: number, todos: ITodo[]) => {
   switch (sort) {
-    case 'active':
+    case sortVariant.active:
       return todos.map((item) => !item.completed && <TodoItem key={item.id} item={item} />);
-    case 'completed':
+    case sortVariant.completed:
       return todos.map((item) => item.completed === true && <TodoItem key={item.id} item={item} />);
-    case 'all':
+    case sortVariant.all:
       return todos.map((item) => <TodoItem key={item.id} item={item} />);
-  };
     default:
       return <div>null</div>;
-  };
+  }
+};
 
-const DisplayTodos: React.FC<DisplayProps> = () => {
-  const [sort, setSort] = useState<string>('active');
-  const todos = useSelector((state) => state);
+const DisplayTodos: React.FC = () => {
+  const [sort, setSort] = useState<number>(sortVariant.active);
+  const todos = useSelector((state: RootState) => state);
 
   return (
     <div className={styles.displayTodos}>
       <div className={styles.buttons}>
-        <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} onClick={() => setSort('active')}>
+        <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} onClick={() => setSort(sortVariant.active)}>
           Active
         </motion.button>
-        <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} onClick={() => setSort('completed')}>
+        <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} onClick={() => setSort(sortVariant.completed)}>
           Completed
         </motion.button>
-        <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} onClick={() => setSort('all')}>
+        <motion.button whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} onClick={() => setSort(sortVariant.all)}>
           All
         </motion.button>
       </div>

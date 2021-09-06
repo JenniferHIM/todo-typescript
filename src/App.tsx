@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {motion} from 'framer-motion';
 import Todos from './components/Todos';
 import DisplayTodos from './components/DisplayTodos';
 import styles from './styles/main.module.scss';
 
-const App: React.FC = () => (
+const App: FC = () => (
   <div className={styles.App}>
     <motion.h1
       initial={{y: -200}}

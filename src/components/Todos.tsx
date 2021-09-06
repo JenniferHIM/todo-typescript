@@ -1,21 +1,22 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import {ITodo} from 'redux-toolkit/interfaces';
 import {addTodos} from '../redux-toolkit/slice';
 import styles from '../styles/main.module.scss';
 
 const Todos: React.FC = () => {
-  const [todo, setTodo] = useState<string>('');
-  const todos = useSelector((state) => state);
+  const [todo, setTodo] = useState('');
   const dispatch = useDispatch();
 
   const add = (): void => {
     if (todo === '') {
       alert('Input is empty');
     } else {
-      const todoItem = {
+      const todoItem: ITodo = {
         id: Math.floor(Math.random() * 1000),
-        item: todo,
+        value: todo,
         completed: false,
+        disabled: false,
       };
       dispatch(addTodos(todoItem));
       setTodo('');
